@@ -27,6 +27,7 @@ This project trains a machine learning model to classify Iris flower species bas
 ## 1. Clone the repository
 
 git clone https://github.com/pragnyaD8/MLOps-deploy.git
+
 cd MLOps-deploy
 
 ## 2. Build Docker image
@@ -36,17 +37,21 @@ docker build -t iris-app .
 ## 3. Run Docker container locally
 
 docker run -p 2000:2000 iris-app
+
 Open http://localhost:2000/docs to test the API.
 
 ## 4. Push Docker image to Docker Hub
 
 docker tag iris-app your-dockerhub-username/iris-app:latest
+
 docker login
+
 docker push your-dockerhub-username/iris-app:latest
 
 ## 5. Deploy on Kubernetes
 
 kubectl apply -f iris-deployment.yaml
+
 kubectl apply -f iris-service.yaml
 
 ## 6.Check pods:
@@ -57,7 +62,8 @@ After deployment, access the application using the NodePort or Ingress URL expos
 Use `kubectl get svc` to to retrieve the external access URL or IP.
 
 Access URL:
-http://localhost:<NodePort>
+
+http://localhost:<port>
 
 ## 7.API Usage
 
