@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iris-app
+  template:
+    metadata:
+      labels:
+        app: iris-app
+    spec:
+      containers:
+        - name: iris-app
+          image: pragnyagannapureddy/iris-app:latest
+          ports:
+            - containerPort: 2000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: iris-app-service
+spec:
+  type: NodePort
+  selector:
+    app: iris-app
+  ports:
+    - port: 2000
+      targetPort: 2000
+      nodePort: 30036
+
